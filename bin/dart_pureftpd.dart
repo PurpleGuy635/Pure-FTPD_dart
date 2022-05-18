@@ -3,6 +3,7 @@ import 'dart:io';
 void main(List<String> arguments) {
   titre();
   menu();
+  revoir();
 }
 
 void titre() {
@@ -27,13 +28,21 @@ void menu() {
       print("quitter");
       STOP = true;
     } else if (choix == 1) {
-      print("mise a jour des dépôt");
+      update();
+      wait();
+      clear();
     } else if (choix == 2) {
-      print("mise a jour des pâquet");
+      upgrade();
+      wait();
+      clear();
     } else if (choix == 3) {
-      print("instalation de pure-ftp");
+      install();
+      wait();
+      clear();
     } else if (choix == 4) {
-      print("ajout d'un utilisateur");
+      adduser();
+      wait();
+      clear();
     }
   } while (STOP != true);
 }
@@ -68,4 +77,51 @@ int choixMenu(int nbChoix) {
     }
   }
   return i;
+}
+
+void update() {
+  print("mise a jour des dépôt");
+}
+
+void upgrade() {
+  print("mise a jour des pâquet");
+}
+
+void install() {
+  print("instalation de pure-ftp");
+}
+
+void adduser() {
+  print("ajout d'un utilisateur");
+}
+
+void wait() {
+  print("");
+  print("");
+  print("Appuyez sur entrer pour continuer ...");
+  stdin.readLineSync();
+  print("");
+}
+
+void clear() {
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
+  print("");
 }
