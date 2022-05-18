@@ -1,8 +1,8 @@
 import 'dart:io';
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
   titre();
-  menu();
+  await menu();
   revoir();
 }
 
@@ -18,7 +18,7 @@ void revoir() {
   print("");
 }
 
-void menu() {
+Future<void> menu() async {
   bool STOP = false;
   do {
     affichmenu();
@@ -28,19 +28,19 @@ void menu() {
       print("quitter");
       STOP = true;
     } else if (choix == 1) {
-      update();
+      await update();
       wait();
       clear();
     } else if (choix == 2) {
-      upgrade();
+      await upgrade();
       wait();
       clear();
     } else if (choix == 3) {
-      install();
+      await install();
       wait();
       clear();
     } else if (choix == 4) {
-      adduser();
+      await adduser();
       wait();
       clear();
     }
@@ -79,24 +79,58 @@ int choixMenu(int nbChoix) {
   return i;
 }
 
-void update() {
+Future<void> update() async {
+  print("");
   print("mise a jour des dépôt");
+  print("");
+
+  String cmd = 'sudo apt-get update -y';
+  ProcessResult result = await Process.run('bash', ['-c', cmd]);
+  print(result.stdout);
+  print(result.stderr);
+
+  print("");
+  print("mise a jour des dépôt ... Done");
+  print("");
 }
 
-void upgrade() {
-  print("mise a jour des pâquet");
+Future<void> upgrade() async {
+  print("");
+  print("mise a jour des paquet");
+  print("");
+
+  String cmd = 'sudo apt-get upgrade -y';
+  ProcessResult result = await Process.run('bash', ['-c', cmd]);
+  print(result.stdout);
+  print(result.stderr);
+
+  print("");
+  print("mise a jour des paquet ... Done");
+  print("");
 }
 
-void install() {
-  print("instalation de pure-ftp");
+Future<void> install() async {
+  print("");
+  print("instalation de Pure-ftpd");
+  print("");
+
+  String cmd = 'sudo apt-get install -y pure-ftpd';
+  ProcessResult result = await Process.run('bash', ['-c', cmd]);
+  print(result.stdout);
+  print(result.stderr);
+
+  print("");
+  print("instalation complete");
+  print("");
 }
 
-void adduser() {
+Future<void> adduser() async {
+  print("");
   print("ajout d'un utilisateur");
+  print("");
 }
 
 void wait() {
-  print("");
   print("");
   print("Appuyez sur entrer pour continuer ...");
   stdin.readLineSync();
