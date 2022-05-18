@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Dart (bin/dart_pureftpd.dart)",
+            "type": "dart",
+            "request": "launch",
+            "program": "bin/dart_pureftpd.dart",
+            "console": "terminal"
+        }
+    ]
+}
