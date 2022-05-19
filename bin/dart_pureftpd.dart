@@ -159,8 +159,25 @@ Future<void> install() async {
 
 Future<void> adduser() async {
   print("");
-  print("ajout d'un utilisateur");
+  print("ajout d'un utilisateur ...");
   print("");
+
+  try {
+    String user = saisieString('utilisateur');
+    String cmd = 'sudo useradd ' + user;
+    ProcessResult result = await Process.run('bash', ['-c', cmd]);
+    print(result.stdout);
+    print(result.stderr);
+
+    print("");
+    print("compte " + user + " ajouté");
+    print("");
+  } catch (e) {
+    print("oups, ajout d'utilisateur a échouer");
+    print("");
+    print("ajjout d'utilisateur ... ERROR");
+    print("");
+  }
 }
 
 void wait() {
@@ -191,4 +208,19 @@ void clear() {
   print("");
   print("");
   print("");
+}
+
+String saisieString(String objectifSaisie) {
+  bool saisieValide = false;
+  String s = "";
+  while (!saisieValide) {
+    print("> Veuillez saisir $objectifSaisie :");
+    try {
+      s = stdin.readLineSync().toString();
+      saisieValide = true;
+    } catch (e) {
+      print("Erreur dans la saisie.");
+    }
+  }
+  return s;
 }
