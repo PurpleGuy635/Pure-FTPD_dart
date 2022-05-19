@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 void main(List<String> arguments) async {
@@ -58,6 +59,8 @@ void affichmenu() {
   print("|                                   |");
   print("|0- quitter                         |");
   print("+-----------------------------------+");
+  print("");
+  print("");
 }
 
 int choixMenu(int nbChoix) {
@@ -84,29 +87,52 @@ Future<void> update() async {
   print("mise a jour des dépôt");
   print("");
 
-  String cmd = 'sudo apt-get update -y';
-  ProcessResult result = await Process.run('bash', ['-c', cmd]);
-  print(result.stdout);
-  print(result.stderr);
+  try {
+    String cmd = 'sudo apt-get update -y';
+    ProcessResult result = await Process.run('bash', ['-c', cmd]);
+    print(result.stdout);
+    print(result.stderr);
 
-  print("");
-  print("mise a jour des dépôt ... Done");
-  print("");
+    print("");
+    print("mise a jour des dépôt ... Done");
+    print("");
+  } catch (e) {
+    print("oups, la mise a jour des dépôt a échouer");
+    print("");
+    print("mise a jour des dépôt ... ERROR");
+    print("");
+  }
 }
 
+/*
+Future<void> update() async {
+  var process = await Process.start('cat', []);
+  process.stdout.transform(utf8.decoder).forEach(print);
+  process.stdin.writeln('Hello, world!');
+  process.stdin.writeln('Hello, galaxy!');
+  process.stdin.writeln('Hello, universe!');
+}
+*/
 Future<void> upgrade() async {
   print("");
-  print("mise a jour des paquet");
+  print("mise a jour des paquets");
   print("");
 
-  String cmd = 'sudo apt-get upgrade -y';
-  ProcessResult result = await Process.run('bash', ['-c', cmd]);
-  print(result.stdout);
-  print(result.stderr);
+  try {
+    String cmd = 'sudo apt-get upgrade -y';
+    ProcessResult result = await Process.run('bash', ['-c', cmd]);
+    print(result.stdout);
+    print(result.stderr);
 
-  print("");
-  print("mise a jour des paquet ... Done");
-  print("");
+    print("");
+    print("mise a jour des paquets ... Done");
+    print("");
+  } catch (e) {
+    print("oups, la mise a jour des paquets a échouer");
+    print("");
+    print("mise a jour des paquets ... ERROR");
+    print("");
+  }
 }
 
 Future<void> install() async {
@@ -114,14 +140,21 @@ Future<void> install() async {
   print("instalation de Pure-ftpd");
   print("");
 
-  String cmd = 'sudo apt-get install -y pure-ftpd';
-  ProcessResult result = await Process.run('bash', ['-c', cmd]);
-  print(result.stdout);
-  print(result.stderr);
+  try {
+    String cmd = 'sudo apt-get install -y pure-ftpd';
+    ProcessResult result = await Process.run('bash', ['-c', cmd]);
+    print(result.stdout);
+    print(result.stderr);
 
-  print("");
-  print("instalation complete");
-  print("");
+    print("");
+    print("instalation complete");
+    print("");
+  } catch (e) {
+    print("oups, l'instalation su service a échouer");
+    print("");
+    print("instalation de Pure-ftpd ... ERROR");
+    print("");
+  }
 }
 
 Future<void> adduser() async {
