@@ -21,6 +21,8 @@ pour pouvoir utiliser le service, il faut un compte la derniére option sera de 
 
 <h5>features présente dans le programme</h5>
 
+![Capture](https://user-images.githubusercontent.com/100714589/169569976-db89b133-b8aa-47fa-8b40-bb80fb1bfc3c.PNG)
+
 <p>l'option pour mettre a jour les dépôt et les paquet a été implémenter.
   
   l'option pour installer le service pure-ftpd a été implémenter.
